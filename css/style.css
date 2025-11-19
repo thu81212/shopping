@@ -82,14 +82,14 @@ body {
 }
 
 .ellipse-98 {
-    left: 308.94px;
+    left: 158px;
     top: 527.58px;
     width: 446.223px;
     height: 211.571px;
 }
 
 .ellipse-99 {
-    left: 477.42px;
+    left: 327px;
     top: 335.25px;
     width: 308.005px;
     height: 153.903px;
@@ -97,7 +97,7 @@ body {
 }
 
 .ellipse-100 {
-    left: 1054.79px;
+    left: 904px;
     top: 540.98px;
     width: 379.647px;
     height: 124.147px;
@@ -105,7 +105,7 @@ body {
 }
 
 .ellipse-101 {
-    left: 1151.34px;
+    left: 1001px;
     top: 498.68px;
     width: 221.547px;
     height: 72.447px;
@@ -113,7 +113,7 @@ body {
 }
 
 .ellipse-102 {
-    left: 1020.58px;
+    left: 870px;
     top: 303.7px;
     width: 166.714px;
     height: 176.004px;
@@ -121,7 +121,7 @@ body {
 }
 
 .ellipse-103 {
-    left: 1420.6px;
+    left: 1270px;
     top: 553.74px;
     width: 71.55px;
     height: 75.396px;
@@ -129,7 +129,7 @@ body {
 }
 
 .ellipse-104 {
-    left: 422.07px;
+    left: 272px;
     top: 246px;
     width: 101.596px;
     height: 107.258px;
@@ -137,7 +137,7 @@ body {
 }
 
 .ellipse-105 {
-    left: 232px;
+    left: 82px;
     top: 428.18px;
     width: 102.651px;
     height: 108.291px;
@@ -147,7 +147,7 @@ body {
 /* Meditating Woman - Main Image */
 .meditating-woman {
     position: absolute;
-    left: 645.91px;
+    left: 495px;
     top: 418.33px;
     width: 492.384px;
     height: 360.825px;
@@ -158,7 +158,7 @@ body {
 /* "How are you feeling today?" Text */
 .feeling-text {
     position: absolute;
-    left: 900px;
+    left: 750px;
     top: 236px;
     transform: translateX(-50%);
     font-family: 'Fuzzy Bubbles', cursive;
@@ -177,7 +177,7 @@ body {
 /* Detect My Emotion Button */
 .detect-button {
     position: absolute;
-    left: 723px;
+    left: 573px;
     top: 868px;
     width: 364px;
     height: 103px;
@@ -218,7 +218,7 @@ body {
 /* Double Down Arrow */
 .double-down {
     position: absolute;
-    left: 876px;
+    left: 726px;
     top: 1060px;
     width: 57px;
     height: 57px;
