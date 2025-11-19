@@ -1,96 +1,77 @@
 /**
- * Main Application
- * Initializes and coordinates all components
+ * Main Application - Updated for new design
  */
 
-// Initialize components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize mood tracker
     const moodTracker = new MoodTracker();
-
-    // Initialize shop
-    const shop = new Shop();
-
-    // Camera control buttons
-    const startCameraBtn = document.getElementById('start-camera');
-    const stopCameraBtn = document.getElementById('stop-camera');
+    const startButton = document.getElementById('start-tracking');
     const videoElement = document.getElementById('video');
     const canvasElement = document.getElementById('overlay');
+    const emotionText = document.getElementById('emotion-text');
+    const confidenceFill = document.getElementById('confidence-fill');
 
-    let isCameraRunning = false;
+    let isTracking = false;
 
-    // Start camera button
-    if (startCameraBtn) {
-        startCameraBtn.addEventListener('click', async () => {
-            try {
-                startCameraBtn.disabled = true;
-                startCameraBtn.textContent = 'Loading models...';
+    // Start/Stop tracking button
+    if (startButton) {
+        startButton.addEventListener('click', async () => {
+            if (!isTracking) {
+                try {
+                    startButton.textContent = 'Loading models...';
+                    startButton.disabled = true;
 
-                await moodTracker.startTracking(videoElement, canvasElement);
+                    await moodTracker.startTracking(videoElement, canvasElement);
 
-                startCameraBtn.style.display = 'none';
-                stopCameraBtn.disabled = false;
-                stopCameraBtn.style.display = 'inline-block';
-                isCameraRunning = true;
+                    startButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 90 90" fill="none"><rect x="30" y="30" width="10" height="30" fill="currentColor"/><rect x="50" y="30" width="10" height="30" fill="currentColor"/></svg><span>Stop Tracking</span>';
+                    startButton.disabled = false;
+                    isTracking = true;
 
-                // Initial dashboard update
-                moodTracker.updateDashboard();
-                moodTracker.updateHistory();
-
-                showNotification('Camera started! Emotion tracking is now active.', 'success');
-            } catch (error) {
-                console.error('Error starting camera:', error);
-                showNotification('Failed to start camera: ' + error.message, 'error');
-                startCameraBtn.disabled = false;
-                startCameraBtn.textContent = 'Start Camera';
-            }
-        });
-    }
-
-    // Stop camera button
-    if (stopCameraBtn) {
-        stopCameraBtn.addEventListener('click', () => {
-            moodTracker.stopTracking();
-
-            startCameraBtn.style.display = 'inline-block';
-            startCameraBtn.disabled = false;
-            startCameraBtn.textContent = 'Start Camera';
-            stopCameraBtn.disabled = true;
-            stopCameraBtn.style.display = 'none';
-            isCameraRunning = false;
-
-            // Reset current emotion display
-            const emotionDisplay = document.getElementById('emotion-display');
-            const confidenceDisplay = document.getElementById('emotion-confidence');
-            if (emotionDisplay) emotionDisplay.textContent = '---';
-            if (confidenceDisplay) confidenceDisplay.innerHTML = '';
-
-            showNotification('Camera stopped', 'info');
-        });
-    }
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href !== '#cart') { // Don't prevent cart modal
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    showNotification('Emotion tracking started!', 'success');
+                } catch (error) {
+                    console.error('Error starting tracking:', error);
+                    showNotification('Failed to start camera: ' + error.message, 'error');
+                    startButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 90 90" fill="none"><circle cx="45" cy="45" r="20" fill="currentColor"/></svg><span>Start Emotion Tracking</span>';
+                    startButton.disabled = false;
                 }
+            } else {
+                moodTracker.stopTracking();
+                startButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 90 90" fill="none"><circle cx="45" cy="45" r="20" fill="currentColor"/></svg><span>Start Emotion Tracking</span>';
+                isTracking = false;
+
+                // Reset display
+                if (emotionText) emotionText.textContent = '---';
+                if (confidenceFill) confidenceFill.style.width = '0%';
+
+                showNotification('Tracking stopped', 'info');
             }
         });
-    });
+    }
 
-    // Load initial mood data on page load
+    // Update emotion display
+    moodTracker.emotionDetector.onEmotionDetected = (emotionData) => {
+        if (emotionText && emotionData) {
+            const emoji = moodTracker.emotionDetector.getEmotionEmoji(emotionData.emotion);
+            emotionText.textContent = `${emoji} ${emotionData.emotion}`;
+        }
+
+        if (confidenceFill && emotionData) {
+            const confidence = (emotionData.confidence * 100).toFixed(1);
+            confidenceFill.style.width = `${confidence}%`;
+        }
+
+        // Save and update dashboard
+        if (emotionData) {
+            moodTracker.saveEmotion(emotionData);
+            moodTracker.updateDashboard();
+            moodTracker.updateHistory();
+        }
+    };
+
+    // Load initial data
     moodTracker.updateDashboard();
     moodTracker.updateHistory();
 
-    console.log('MoodShop initialized successfully!');
+    console.log('Shoppy Emotions initialized!');
 });
 
 /**
@@ -110,19 +91,3 @@ function showNotification(message, type = 'info') {
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
-
-// Handle page visibility changes (pause/resume camera when tab is hidden/visible)
-document.addEventListener('visibilitychange', () => {
-    const video = document.getElementById('video');
-    if (document.hidden) {
-        // Page is hidden, pause video
-        if (video && video.srcObject) {
-            video.pause();
-        }
-    } else {
-        // Page is visible, resume video
-        if (video && video.srcObject) {
-            video.play();
-        }
-    }
-});
