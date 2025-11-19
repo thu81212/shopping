@@ -243,22 +243,7 @@ class EmotionDetector {
         const emojiElement = this.emojiOverlay.querySelector('.emoji');
         emojiElement.className = `emoji ${emojiClass}`;
 
-        // Position overlay on detected face
-        if (faceBox) {
-            const scaleX = this.canvas.width / this.displaySize.width;
-            const scaleY = this.canvas.height / this.displaySize.height;
-
-            const left = faceBox.x * scaleX;
-            const top = faceBox.y * scaleY;
-            const width = faceBox.width * scaleX;
-
-            this.emojiOverlay.style.left = `${left}px`;
-            this.emojiOverlay.style.top = `${top}px`;
-            this.emojiOverlay.style.width = `${width}px`;
-            this.emojiOverlay.style.height = `${width}px`;
-        }
-
-        // Show overlay with animation
+        // Show overlay with animation (positioned via CSS, not on face)
         this.emojiOverlay.classList.add('active');
     }
 
