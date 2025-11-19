@@ -12,9 +12,8 @@
     display: grid;
     grid-template-columns: repeat(3, 406px);
     gap: 54px 54px;
-    padding: 100px 0;
-    justify-content: center;
-    transform: translateX(15px);
+    padding: 100px 193.808px 100px 208.192px;
+    justify-content: flex-start;
 }
 
 /* Product Card */
