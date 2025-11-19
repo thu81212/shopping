@@ -63,14 +63,8 @@
     padding: 10px 20px;
     border-radius: 26.96px;
     text-align: center;
-}
-
-.tag:first-child {
-    width: 111px;
-}
-
-.tag:last-child {
-    width: 83px;
+    width: fit-content;
+    white-space: nowrap;
 }
 
 .description {
