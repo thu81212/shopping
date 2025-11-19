@@ -149,8 +149,8 @@ function showCartModal() {
 
     // Checkout button
     modal.querySelector('.checkout-btn').addEventListener('click', () => {
-        showProductNotification('Checkout coming soon!');
         modal.remove();
+        showEmotionalReceipt();
     });
 
     // Add styles for modal
@@ -496,6 +496,431 @@ function initializeProductCardHovers() {
             }
         });
     });
+}
+
+// Analyze emotions from cart
+function analyzeEmotions() {
+    const allTags = cart.flatMap(item => item.tags);
+    const uniqueTags = [...new Set(allTags)];
+
+    // Categorize emotions
+    const positive = ['Joyful', 'Excited', 'Content', 'Peaceful', 'Playful', 'Cheeky', 'Blissful', 'Starstruck'];
+    const negative = ['Sad', 'Worried', 'Anxious', 'Disappointed', 'Doubtful'];
+    const neutral = ['Neutral', 'Indifferent', 'Skeptical', 'Tired', 'Sleepy'];
+    const energetic = ['Surprised', 'Amazed', 'Excited', 'Starstruck'];
+
+    const emotionCounts = {
+        positive: uniqueTags.filter(tag => positive.includes(tag)).length,
+        negative: uniqueTags.filter(tag => negative.includes(tag)).length,
+        neutral: uniqueTags.filter(tag => neutral.includes(tag)).length,
+        energetic: uniqueTags.filter(tag => energetic.includes(tag)).length
+    };
+
+    // Generate summary based on emotion mix
+    let summary = '';
+    const total = emotionCounts.positive + emotionCounts.negative + emotionCounts.neutral;
+
+    if (emotionCounts.positive > emotionCounts.negative && emotionCounts.positive > emotionCounts.neutral) {
+        summary = "You're experiencing a predominantly positive emotional state today! Your feelings show an optimistic outlook with moments of joy and contentment. Embrace this energy and share it with others around you.";
+    } else if (emotionCounts.negative > emotionCounts.positive) {
+        if (emotionCounts.positive > 0) {
+            summary = "You're navigating through some challenging emotions today, but there's also brightness mixed in. It's okay to feel complex emotions - they're all valid. Take time for self-care and remember that difficult feelings are temporary.";
+        } else {
+            summary = "Today feels heavy with difficult emotions. Remember that it's completely normal to have tough days. Be gentle with yourself, reach out to loved ones if you need support, and know that brighter days are ahead.";
+        }
+    } else if (emotionCounts.neutral > 0 && emotionCounts.positive === 0 && emotionCounts.negative === 0) {
+        summary = "You're in a calm, neutral emotional space today. This balanced state can be peaceful and grounding. It's a great time for reflection and mindful activities.";
+    } else {
+        summary = "Your emotions today are beautifully complex and multifaceted. You're experiencing a rich mix of feelings - joy alongside worry, excitement with caution. This emotional diversity shows your depth and humanity. Honor all these feelings as they come.";
+    }
+
+    // Add specific observations
+    if (emotionCounts.energetic > 2) {
+        summary += " There's a strong energetic current running through your emotional state - channel this into creative or active pursuits!";
+    }
+
+    if (uniqueTags.includes('Tired') || uniqueTags.includes('Sleepy')) {
+        summary += " Your body and mind may need extra rest today. Listen to these signals and give yourself permission to slow down.";
+    }
+
+    return {
+        tags: uniqueTags,
+        summary: summary,
+        counts: emotionCounts
+    };
+}
+
+// Show emotional receipt
+function showEmotionalReceipt() {
+    const analysis = analyzeEmotions();
+    const today = new Date();
+    const dateString = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeString = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+    const receipt = document.createElement('div');
+    receipt.className = 'emotional-receipt-modal';
+    receipt.innerHTML = `
+        <div class="receipt-content">
+            <div class="receipt-header">
+                <h2>Your Emotional Receipt</h2>
+                <button class="close-receipt">&times;</button>
+            </div>
+            <div class="receipt-body">
+                <div class="receipt-date">
+                    <p class="date-label">Checked Out:</p>
+                    <p class="date-value">${dateString}</p>
+                    <p class="time-value">${timeString}</p>
+                </div>
+
+                <div class="receipt-divider"></div>
+
+                <div class="receipt-emotions">
+                    <h3>Today's Emotions</h3>
+                    <div class="emotion-tags-display">
+                        ${analysis.tags.map(tag => `<span class="receipt-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="receipt-items">
+                    <h3>Items Selected (${cart.length})</h3>
+                    ${cart.map(item => `
+                        <div class="receipt-item">
+                            <div class="receipt-item-emoji">${getEmojiDisplay(item.emoji)}</div>
+                            <div class="receipt-item-info">
+                                <div class="receipt-item-tags">
+                                    ${item.tags.map(tag => `<span class="receipt-mini-tag">${tag}</span>`).join('')}
+                                </div>
+                                ${item.quantity > 1 ? `<span class="receipt-qty">x${item.quantity}</span>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="receipt-divider"></div>
+
+                <div class="receipt-analysis">
+                    <h3>Your Emotional Summary</h3>
+                    <p class="analysis-text">${analysis.summary}</p>
+                </div>
+
+                <div class="receipt-divider"></div>
+
+                <div class="receipt-actions">
+                    <button class="save-calendar-btn" onclick="saveToCalendar()">
+                        📅 Save to Calendar
+                    </button>
+                    <p class="receipt-note">Remember: All emotions are valid. Take care of yourself today. 💚</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(receipt);
+
+    // Close receipt functionality
+    receipt.querySelector('.close-receipt').addEventListener('click', () => {
+        receipt.remove();
+        cart = []; // Clear cart after viewing receipt
+        updateCartDisplay();
+    });
+
+    receipt.addEventListener('click', (e) => {
+        if (e.target === receipt) {
+            receipt.remove();
+            cart = [];
+            updateCartDisplay();
+        }
+    });
+
+    // Add receipt styles
+    addReceiptStyles();
+}
+
+// Save to calendar (.ics file)
+window.saveToCalendar = function() {
+    const analysis = analyzeEmotions();
+    const today = new Date();
+    const todayFormatted = today.toISOString().split('T')[0].replace(/-/g, '');
+
+    const emotionsList = analysis.tags.join(', ');
+    const cartSummary = cart.map((item, index) => `${index + 1}. ${item.tags.join(' & ')} (x${item.quantity})`).join('\\n');
+
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Shop Your Emotions//Emotional Receipt//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:${todayFormatted}
+DTEND;VALUE=DATE:${todayFormatted}
+SUMMARY:Emotional Check-In: ${analysis.tags.slice(0, 3).join(', ')}
+DESCRIPTION:${analysis.summary.replace(/\n/g, '\\n')}\\n\\nEmotions: ${emotionsList}\\n\\nItems Selected:\\n${cartSummary}
+LOCATION:Shop Your Emotions
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reflect on your emotions from today
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+
+    // Create download link
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `emotional-receipt-${todayFormatted}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    showProductNotification('Calendar event saved! 📅');
+};
+
+// Add receipt styles
+function addReceiptStyles() {
+    if (document.getElementById('receipt-styles')) return;
+
+    const style = document.createElement('style');
+    style.id = 'receipt-styles';
+    style.textContent = `
+        .emotional-receipt-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2500;
+            animation: fadeIn 0.3s;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .receipt-content {
+            background-color: #F5F1E8;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.4s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .receipt-header {
+            padding: 30px;
+            background-color: #C5504B;
+            color: #F5F1E8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .receipt-header h2 {
+            margin: 0;
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 32px;
+        }
+
+        .close-receipt {
+            background: none;
+            border: none;
+            color: #F5F1E8;
+            font-size: 40px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .close-receipt:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        .receipt-body {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .receipt-date {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .date-label {
+            font-family: 'Fuzzy Bubbles', cursive;
+            font-size: 16px;
+            color: #C5504B;
+            margin: 0 0 8px 0;
+        }
+
+        .date-value {
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 20px;
+            color: #C5504B;
+            margin: 0;
+        }
+
+        .time-value {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+
+        .receipt-divider {
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                #C5504B 0px,
+                #C5504B 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 25px 0;
+        }
+
+        .receipt-emotions h3,
+        .receipt-items h3,
+        .receipt-analysis h3 {
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 22px;
+            color: #C5504B;
+            margin: 0 0 15px 0;
+        }
+
+        .emotion-tags-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .receipt-tag {
+            background-color: #C5504B;
+            color: #F5F1E8;
+            font-family: 'Fuzzy Bubbles', cursive;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            white-space: nowrap;
+        }
+
+        .receipt-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .receipt-item-emoji {
+            font-size: 36px;
+        }
+
+        .receipt-item-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .receipt-item-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .receipt-mini-tag {
+            background-color: #C5504B;
+            color: #F5F1E8;
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-family: 'Fuzzy Bubbles', cursive;
+        }
+
+        .receipt-qty {
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .analysis-text {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
+
+        .receipt-actions {
+            text-align: center;
+        }
+
+        .save-calendar-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: #C5504B;
+            color: #F5F1E8;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            font-family: 'Fuzzy Bubbles', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .save-calendar-btn:hover {
+            background-color: #A84440;
+            transform: scale(1.02);
+        }
+
+        .receipt-note {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .receipt-content {
+                max-width: 100%;
+                max-height: 95vh;
+            }
+
+            .receipt-header h2 {
+                font-size: 24px;
+            }
+
+            .receipt-body {
+                padding: 20px;
+            }
+
+            .receipt-tag {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+        }
+    `;
+
+    document.head.appendChild(style);
 }
 
 // Console welcome message for products
