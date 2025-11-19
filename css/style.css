@@ -1,181 +1,291 @@
-/* Global Styles - Matching front page.svg exactly */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --bg-cream: #F5F1E8;
-    --terracotta: #C5504B;
-    --blob-peach: #FFE4D9;
-    --blob-yellow: #FFE4AD;
-    --text-dark: #2d2d2d;
-}
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background-color: var(--bg-cream);
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden;
-    position: relative;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f1e8;
 }
 
-.container {
-    max-width: 1200px;
+/* Main Container - Exact Figma Size */
+.front-page {
+    position: relative;
+    width: 1728px;
+    height: 1117px;
+    background-color: #f5f1e8;
     margin: 0 auto;
-    padding: 0 20px;
+    overflow: hidden;
 }
 
-/* Decorative Blobs - Matching SVG positions */
-.blob {
+/* Header Background */
+.header-bg {
     position: absolute;
-    border-radius: 50% 60% 40% 50% / 60% 50% 60% 40%;
-    z-index: 0;
-    opacity: 0.6;
-}
-
-.blob-1 {
-    background: var(--blob-peach);
-    width: 400px;
-    height: 350px;
-    top: 500px;
-    left: -100px;
-    transform: rotate(-20deg);
-}
-
-.blob-2 {
-    background: var(--blob-peach);
-    width: 300px;
-    height: 280px;
-    top: 400px;
-    right: -50px;
-    transform: rotate(15deg);
-}
-
-.blob-3 {
-    background: var(--blob-peach);
-    width: 350px;
-    height: 300px;
-    bottom: 200px;
-    right: 100px;
-    transform: rotate(-10deg);
-}
-
-.blob-4 {
-    background: var(--blob-peach);
-    width: 280px;
-    height: 250px;
-    bottom: 400px;
-    right: 150px;
-    transform: rotate(25deg);
-}
-
-.blob-5 {
-    background: var(--blob-yellow);
-    width: 200px;
-    height: 220px;
-    top: 300px;
-    right: 50px;
-    transform: rotate(-15deg);
-}
-
-.blob-6 {
-    background: var(--blob-yellow);
-    width: 180px;
-    height: 190px;
-    bottom: 100px;
-    right: 50px;
-    transform: rotate(20deg);
-}
-
-.blob-7 {
-    background: var(--blob-yellow);
-    width: 220px;
-    height: 200px;
-    top: 350px;
-    left: 100px;
-    transform: rotate(-25deg);
-}
-
-/* Header - Matching SVG exactly */
-header {
-    background-color: var(--terracotta);
+    top: 0;
+    left: 0;
+    width: 1728px;
     height: 97px;
-    display: flex;
-    align-items: center;
-    position: relative;
+    background-color: #c5504b;
+    z-index: 5;
+}
+
+/* Main Title */
+.main-title {
+    position: absolute;
+    left: 179px;
+    top: 49px;
+    transform: translateY(-50%);
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.3;
+    color: #f5f1e8;
+    white-space: nowrap;
     z-index: 10;
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.logo {
-    color: var(--bg-cream);
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-.camera-icon {
-    background: var(--bg-cream);
+/* Shopping Cart Button */
+.cart-button {
+    position: absolute;
+    left: 1446px;
+    top: 25px;
     width: 68px;
-    height: 48px;
-    border-radius: 24px;
+    height: 47.802px;
+    background-color: #f5f1e8;
+    border-radius: 23.901px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--terracotta);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 100;
 }
 
-.camera-icon svg {
-    width: 32px;
-    height: 32px;
+.cart-button:hover {
+    transform: scale(1.05);
 }
 
-/* Hero Section */
-.hero-section {
-    position: relative;
+.cart-button img {
+    width: 30.97px;
+    height: 30.97px;
+}
+
+/* Background Decorative Ellipses */
+.ellipse {
+    position: absolute;
     z-index: 1;
-    padding: 60px 0;
 }
 
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--text-dark);
+.ellipse-98 {
+    left: 308.94px;
+    top: 527.58px;
+    width: 446.223px;
+    height: 211.571px;
+}
+
+.ellipse-99 {
+    left: 477.42px;
+    top: 335.25px;
+    width: 308.005px;
+    height: 153.903px;
+    transform: rotate(23.492deg);
+}
+
+.ellipse-100 {
+    left: 1054.79px;
+    top: 540.98px;
+    width: 379.647px;
+    height: 124.147px;
+    transform: rotate(15deg);
+}
+
+.ellipse-101 {
+    left: 1151.34px;
+    top: 498.68px;
+    width: 221.547px;
+    height: 72.447px;
+    transform: rotate(345deg);
+}
+
+.ellipse-102 {
+    left: 1020.58px;
+    top: 303.7px;
+    width: 166.714px;
+    height: 176.004px;
+    transform: rotate(60deg);
+}
+
+.ellipse-103 {
+    left: 1420.6px;
+    top: 553.74px;
+    width: 71.55px;
+    height: 75.396px;
+    transform: rotate(90deg);
+}
+
+.ellipse-104 {
+    left: 422.07px;
+    top: 246px;
+    width: 101.596px;
+    height: 107.258px;
+    transform: rotate(112.248deg);
+}
+
+.ellipse-105 {
+    left: 232px;
+    top: 428.18px;
+    width: 102.651px;
+    height: 108.291px;
+    transform: rotate(75deg) scaleY(-1);
+}
+
+/* Meditating Woman - Main Image */
+.meditating-woman {
+    position: absolute;
+    left: 645.91px;
+    top: 418.33px;
+    width: 492.384px;
+    height: 360.825px;
+    z-index: 10;
+    object-fit: contain;
+}
+
+/* "How are you feeling today?" Text */
+.feeling-text {
+    position: absolute;
+    left: 900px;
+    top: 236px;
+    transform: translateX(-50%);
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 40px;
+    line-height: 1.3;
+    color: #c5504b;
     text-align: center;
-    margin-bottom: 10px;
-    text-transform: lowercase;
-    font-family: Georgia, serif;
+    white-space: nowrap;
+    z-index: 15;
 }
 
-.hero-subtitle {
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    text-align: center;
-    margin-bottom: 60px;
-    text-transform: lowercase;
-    font-family: Georgia, serif;
-    opacity: 0.8;
+.feeling-text p {
+    margin: 0;
 }
 
-/* Camera Container */
+/* Detect My Emotion Button */
+.detect-button {
+    position: absolute;
+    left: 723px;
+    top: 868px;
+    width: 364px;
+    height: 103px;
+    background-color: #c5504b;
+    border: 10px solid #ffe4d9;
+    border-radius: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.detect-button:hover {
+    background-color: #b34641;
+    transform: scale(1.05);
+}
+
+.detect-button:active {
+    transform: scale(0.98);
+}
+
+.detect-button span {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 25px;
+    line-height: 1.3;
+    color: #f5f1e8;
+    white-space: nowrap;
+}
+
+.camera-icon {
+    width: 39px;
+    height: 39px;
+}
+
+/* Double Down Arrow */
+.double-down {
+    position: absolute;
+    left: 876px;
+    top: 1060px;
+    width: 57px;
+    height: 57px;
+    cursor: pointer;
+    z-index: 20;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Camera Modal */
+.camera-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-modal.active {
+    display: flex;
+}
+
 .camera-container {
-    max-width: 600px;
-    margin: 0 auto 40px;
-    background: white;
+    position: relative;
+    background-color: #f5f1e8;
     border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 800px;
+    width: 90%;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 40px;
+    color: #c5504b;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.close-modal:hover {
+    transform: scale(1.1);
+}
+
+.camera-container h2 {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 30px;
+    color: #c5504b;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .video-wrapper {
@@ -183,6 +293,9 @@ header .container {
     width: 100%;
     aspect-ratio: 4/3;
     background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 #video {
@@ -199,265 +312,62 @@ header .container {
     height: 100%;
 }
 
-.emotion-display {
-    padding: 20px;
-    background: var(--bg-cream);
-}
-
-.current-emotion {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--text-dark);
+.emotion-result {
+    text-align: center;
 }
 
 #emotion-text {
-    color: var(--terracotta);
-    font-weight: 700;
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 28px;
+    color: #c5504b;
+    margin-bottom: 15px;
 }
 
 .confidence-bar {
     width: 100%;
-    height: 12px;
+    height: 20px;
     background: #ddd;
-    border-radius: 6px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .confidence-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--terracotta), #ff6b6b);
+    background: linear-gradient(90deg, #c5504b, #ff6b6b);
     width: 0%;
     transition: width 0.3s ease;
 }
 
-/* CTA Button - Matching SVG */
-.cta-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    background: var(--terracotta);
-    color: var(--bg-cream);
-    border: 5px solid var(--blob-peach);
-    border-radius: 50px;
-    padding: 18px 40px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 0 auto;
-    max-width: 400px;
-    transition: all 0.3s ease;
-}
-
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(197, 80, 75, 0.3);
-}
-
-.cta-button svg {
-    width: 28px;
-    height: 28px;
-}
-
-/* Mood Dashboard */
-.mood-dashboard {
-    max-width: 800px;
-    margin: 80px auto 0;
-    padding: 40px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-.mood-dashboard h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: var(--text-dark);
-}
-
-.mood-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.stat-card {
-    background: var(--bg-cream);
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-.stat-card h4 {
-    font-size: 0.9rem;
-    color: #666;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.emotion-large {
-    font-size: 3rem;
-    margin: 10px 0;
-}
-
-.stat-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--terracotta);
-}
-
-.emotion-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.emotion-bar-item {
-    display: grid;
-    grid-template-columns: 120px 1fr 60px;
-    align-items: center;
-    gap: 15px;
-}
-
-.emotion-label {
-    font-weight: 500;
-    text-transform: capitalize;
-}
-
-.emotion-bar-container {
-    height: 12px;
-    background: #e0e0e0;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.emotion-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--terracotta), #ff6b6b);
-    transition: width 0.5s ease;
-}
-
-.emotion-percent {
-    text-align: right;
-    font-weight: 600;
-    color: #666;
-}
-
-/* Mood History */
-.mood-history {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.history-item {
-    display: grid;
-    grid-template-columns: 120px 1fr 120px;
-    align-items: center;
-    padding: 15px;
-    background: var(--bg-cream);
-    border-radius: 10px;
-    gap: 15px;
-}
-
-.history-item-empty {
-    opacity: 0.5;
-}
-
-.history-date {
-    font-weight: 600;
-    color: #666;
-}
-
-.history-emotion {
-    font-weight: 600;
-    color: var(--terracotta);
-    text-transform: capitalize;
-    font-size: 1.1rem;
-}
-
-.history-count {
-    text-align: right;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
+/* Notification Animations */
+@keyframes slideDown {
+    from {
+        transform: translateX(-50%) translateY(-100px);
+        opacity: 0;
     }
-
-    .hero-subtitle {
-        font-size: 1.3rem;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .camera-icon {
-        width: 50px;
-        height: 36px;
-    }
-
-    .mood-dashboard {
-        padding: 20px;
-    }
-
-    .emotion-bar-item {
-        grid-template-columns: 100px 1fr 50px;
-        gap: 10px;
-    }
-
-    .history-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .blob {
-        opacity: 0.3;
-    }
-}
-
-/* Loading Animation */
-@keyframes pulse {
-    0%, 100% {
+    to {
+        transform: translateX(-50%) translateY(0);
         opacity: 1;
     }
-    50% {
-        opacity: 0.5;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-50%) translateY(-100px);
+        opacity: 0;
     }
 }
 
-.loading {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+/* Responsive scaling for smaller screens */
+@media screen and (max-width: 1728px) {
+    body {
+        overflow-x: auto;
+    }
 
-/* Notifications */
-.notification {
-    position: fixed;
-    top: 120px;
-    right: -400px;
-    background: white;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transition: right 0.3s ease;
-    border-left: 4px solid var(--terracotta);
-}
-
-.notification.show {
-    right: 20px;
-}
-
-.notification-success {
-    border-left-color: #10b981;
-}
-
-.notification-error {
-    border-left-color: #ef4444;
+    .front-page {
+        margin: 0;
+    }
 }

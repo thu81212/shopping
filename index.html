@@ -3,69 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoppy Emotions</title>
+    <title>Shop Your Emotions</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fuzzy+Bubbles&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 </head>
 <body>
-    <!-- Decorative Blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
-    <div class="blob blob-5"></div>
-    <div class="blob blob-6"></div>
-    <div class="blob blob-7"></div>
+    <div class="front-page">
+        <!-- Header Background -->
+        <div class="header-bg"></div>
 
-    <header>
-        <div class="container">
-            <h1 class="logo">Shoppy Emotions</h1>
-            <div class="camera-icon">
-                <svg width="32" height="32" viewBox="0 0 90 90" fill="none">
-                    <circle cx="45" cy="45" r="20" fill="currentColor"/>
-                    <rect x="20" y="35" width="50" height="25" rx="5" fill="none" stroke="currentColor" stroke-width="3"/>
-                </svg>
+        <!-- Shop Your Emotions Title -->
+        <h1 class="main-title">Shop Your Emotions</h1>
+
+        <!-- Shopping Cart Button -->
+        <div class="cart-button">
+            <img src="https://www.figma.com/api/mcp/asset/9bc90771-4cd2-441c-81ba-9f7fdc2a726d" alt="Shopping Cart">
+        </div>
+
+        <!-- Background Decorative Ellipses -->
+        <img src="https://www.figma.com/api/mcp/asset/99711103-0066-49a6-a12b-a02f9516f2ed" alt="" class="ellipse ellipse-98">
+        <img src="https://www.figma.com/api/mcp/asset/31a31be9-262f-4319-b267-e059fb5317f6" alt="" class="ellipse ellipse-99">
+        <img src="https://www.figma.com/api/mcp/asset/415b0ed3-f8eb-487d-858c-bec411009723" alt="" class="ellipse ellipse-100">
+        <img src="https://www.figma.com/api/mcp/asset/0d71c272-f3f7-41c9-bf85-7d102e8ce568" alt="" class="ellipse ellipse-101">
+        <img src="https://www.figma.com/api/mcp/asset/f910007d-363d-4d4d-bb14-e5c5a0f2193c" alt="" class="ellipse ellipse-102">
+        <img src="https://www.figma.com/api/mcp/asset/9b9b617d-328d-493f-afaa-dfea873dcc44" alt="" class="ellipse ellipse-103">
+        <img src="https://www.figma.com/api/mcp/asset/eea7f06b-707b-4535-9f6d-3cbe8d5becda" alt="" class="ellipse ellipse-104">
+        <img src="https://www.figma.com/api/mcp/asset/ec91419a-c674-463a-bca0-e1a797b5c077" alt="" class="ellipse ellipse-105">
+
+        <!-- Meditating Woman - Main Image -->
+        <img src="https://www.figma.com/api/mcp/asset/79944f54-099a-4d91-bdcc-c76464591d24" alt="Meditating Woman" class="meditating-woman">
+
+        <!-- "How are you feeling today?" Text -->
+        <div class="feeling-text">
+            <p>How are you</p>
+            <p>feeling today?</p>
+        </div>
+
+        <!-- Detect My Emotion Button -->
+        <button class="detect-button">
+            <img src="https://www.figma.com/api/mcp/asset/12bf884c-c181-4e95-807a-8e8b6d38bafa" alt="Camera" class="camera-icon">
+            <span>Detect My Emotion</span>
+        </button>
+
+        <!-- Double Down Arrow -->
+        <img src="https://www.figma.com/api/mcp/asset/ef35a991-a7db-40eb-bdce-ed05d41caf34" alt="Scroll Down" class="double-down">
+
+        <!-- Hidden Camera Interface -->
+        <div id="camera-modal" class="camera-modal">
+            <div class="camera-container">
+                <button class="close-modal">&times;</button>
+                <h2>Detecting Your Emotion...</h2>
+                <div class="video-wrapper">
+                    <video id="video" autoplay muted playsinline></video>
+                    <canvas id="overlay"></canvas>
+                </div>
+                <div class="emotion-result">
+                    <p id="emotion-text">Analyzing...</p>
+                    <div class="confidence-bar">
+                        <div id="confidence-fill" class="confidence-fill"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
-
-    <main>
-        <section class="hero-section">
-            <div class="container">
-                <h2 class="hero-title">track your moods</h2>
-                <h3 class="hero-subtitle">feel your shopping emotions</h3>
-
-                <div class="camera-container">
-                    <div class="video-wrapper">
-                        <video id="video" autoplay muted playsinline></video>
-                        <canvas id="overlay"></canvas>
-                    </div>
-
-                    <div class="emotion-display">
-                        <p class="current-emotion">Current: <span id="emotion-text">---</span></p>
-                        <div class="confidence-bar">
-                            <div id="confidence-fill" class="confidence-fill"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button id="start-tracking" class="cta-button">
-                    <svg width="24" height="24" viewBox="0 0 90 90" fill="none">
-                        <circle cx="45" cy="45" r="20" fill="currentColor"/>
-                    </svg>
-                    <span>Start Emotion Tracking</span>
-                </button>
-
-                <div class="mood-dashboard">
-                    <h3>Today's Mood</h3>
-                    <div id="mood-stats" class="mood-stats"></div>
-
-                    <h3>Mood History (7 Days)</h3>
-                    <div id="mood-history" class="mood-history"></div>
-                </div>
-            </div>
-        </section>
-    </main>
+    </div>
 
     <script src="js/emotion-detector.js"></script>
     <script src="js/mood-tracker.js"></script>
