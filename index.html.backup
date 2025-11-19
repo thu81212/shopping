@@ -4,78 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Your Emotions</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/products.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Fuzzy+Bubbles:wght@400&family=DM+Sans:wght@400&display=swap" rel="stylesheet">
-    <!-- Face-api.js for emotion detection -->
-    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 </head>
 <body>
-    <!-- Front Page Section -->
-    <div class="front-page">
-        <!-- Header Background -->
-        <div class="header-bg"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">Shop Your Emotions</h1>
+            <button class="cart-button">
+                <svg class="cart-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 2L7.17 6H1L6 11L4 17H20L18 11L23 6H16.83L15 2H9Z" stroke="#C5504B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" fill="#C5504B"/>
+                    <path d="M18 22C18.5523 22 19 21.5523 19 21C19 20.4477 18.5523 20 18 20C17.4477 20 17 20.4477 17 21C17 21.5523 17.4477 22 18 22Z" fill="#C5504B"/>
+                </svg>
+            </button>
+        </header>
 
-        <!-- Shop Your Emotions Title -->
-        <h1 class="main-title">Shop Your Emotions</h1>
-
-        <!-- Shopping Cart Button -->
-        <div class="cart-button">
-            <img src="https://www.figma.com/api/mcp/asset/9bc90771-4cd2-441c-81ba-9f7fdc2a726d" alt="Shopping Cart">
-            <span class="cart-badge" style="display: none;">0</span>
+        <!-- Scroll Down Icon -->
+        <div class="scroll-down">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="#C5504B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
 
-        <!-- Background Decorative Ellipses -->
-        <img src="https://www.figma.com/api/mcp/asset/99711103-0066-49a6-a12b-a02f9516f2ed" alt="" class="ellipse ellipse-98">
-        <img src="https://www.figma.com/api/mcp/asset/31a31be9-262f-4319-b267-e059fb5317f6" alt="" class="ellipse ellipse-99">
-        <img src="https://www.figma.com/api/mcp/asset/415b0ed3-f8eb-487d-858c-bec411009723" alt="" class="ellipse ellipse-100">
-        <img src="https://www.figma.com/api/mcp/asset/0d71c272-f3f7-41c9-bf85-7d102e8ce568" alt="" class="ellipse ellipse-101">
-        <img src="https://www.figma.com/api/mcp/asset/f910007d-363d-4d4d-bb14-e5c5a0f2193c" alt="" class="ellipse ellipse-102">
-        <img src="https://www.figma.com/api/mcp/asset/9b9b617d-328d-493f-afaa-dfea873dcc44" alt="" class="ellipse ellipse-103">
-        <img src="https://www.figma.com/api/mcp/asset/eea7f06b-707b-4535-9f6d-3cbe8d5becda" alt="" class="ellipse ellipse-104">
-        <img src="https://www.figma.com/api/mcp/asset/ec91419a-c674-463a-bca0-e1a797b5c077" alt="" class="ellipse ellipse-105">
-
-        <!-- Meditating Woman - Main Image -->
-        <img src="https://www.figma.com/api/mcp/asset/79944f54-099a-4d91-bdcc-c76464591d24" alt="Meditating Woman" class="meditating-woman">
-
-        <!-- "How are you feeling today?" Text -->
-        <div class="feeling-text">
-            <p>How are you</p>
-            <p>feeling today?</p>
-        </div>
-
-        <!-- Detect My Emotion Button -->
-        <button class="detect-button">
-            <img src="https://www.figma.com/api/mcp/asset/12bf884c-c181-4e95-807a-8e8b6d38bafa" alt="Camera" class="camera-icon">
-            <span>Detect My Emotion</span>
-        </button>
-
-        <!-- Double Down Arrow -->
-        <img src="https://www.figma.com/api/mcp/asset/ef35a991-a7db-40eb-bdce-ed05d41caf34" alt="Scroll Down" class="double-down">
-    </div>
-
-    <!-- Camera Modal for Emotion Detection -->
-    <div id="camera-modal" class="camera-modal">
-        <div class="camera-container">
-            <button class="close-modal">&times;</button>
-            <h2>Detecting Your Emotion...</h2>
-            <div class="video-wrapper">
-                <video id="video" autoplay muted playsinline></video>
-                <canvas id="overlay"></canvas>
-            </div>
-            <div class="emotion-result">
-                <p id="emotion-text">Analyzing...</p>
-                <div class="confidence-bar">
-                    <div id="confidence-fill"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Products Section -->
-    <div class="products-section">
         <!-- Products Grid -->
         <div class="products-grid">
             <!-- Product Card 1 - Happy Face -->
@@ -312,10 +264,6 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/emotion-detector.js"></script>
-    <script src="js/mood-tracker.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/products.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

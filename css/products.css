@@ -1,0 +1,505 @@
+/* Products Section */
+.products-section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F5F1E8;
+    position: relative;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 406px);
+    gap: 54px 54px;
+    padding: 100px 200px 100px 200px;
+    justify-content: center;
+}
+
+/* Product Card */
+.product-card {
+    width: 406px;
+    height: 423px;
+    border: 2px solid #C5504B;
+    border-radius: 29.12px;
+    background-color: transparent;
+    position: relative;
+    overflow: visible;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(197, 80, 75, 0.2);
+}
+
+.emoji-container {
+    width: 100%;
+    height: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.emoji {
+    width: 116px;
+    height: 116px;
+    position: relative;
+}
+
+/* Eyes */
+.eye {
+    width: 38px;
+    height: 38px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.eye.left {
+    left: 8px;
+    top: 45px;
+}
+
+.eye.right {
+    right: 8px;
+    top: 45px;
+}
+
+.eye.small {
+    width: 38px;
+    height: 38px;
+}
+
+/* Happy Emoji */
+.happy-emoji {
+    border: 13.45px solid black;
+    border-radius: 50%;
+}
+
+.happy-mouth {
+    width: 116px;
+    height: 116px;
+    border: 13.45px solid black;
+    border-radius: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    transform: rotate(0deg);
+}
+
+/* Winking Emoji */
+.wink-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.wink-cover {
+    width: 88.41px;
+    height: 89.74px;
+    background-color: #F5F1E8;
+    border-radius: 50%;
+    position: absolute;
+    left: 13.96px;
+    top: 11.97px;
+}
+
+/* Surprised Emoji */
+.surprised-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+    transform: rotate(90deg);
+}
+
+.surprised-emoji .eye.left {
+    left: 12px;
+    top: 39px;
+}
+
+.surprised-mouth {
+    width: 38px;
+    height: 0px;
+    border: 20px solid black;
+    position: absolute;
+    right: 12px;
+    top: 65px;
+}
+
+/* Sad Emoji */
+.sad-emoji {
+    border: 13px solid black;
+    border-radius: 50%;
+}
+
+.sad-mouth {
+    width: 114px;
+    height: 114px;
+    border: 13px solid black;
+    border-radius: 50%;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    position: absolute;
+    top: 135px;
+    left: 1px;
+    transform: rotate(-135deg);
+}
+
+/* Very Sad Emoji */
+.very-sad-emoji {
+    border: 15px solid black;
+    border-radius: 50%;
+}
+
+.very-sad-mouth {
+    width: 51.50px;
+    height: 51.50px;
+    border: 15px solid black;
+    border-radius: 50%;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    position: absolute;
+    top: 107px;
+    left: 32px;
+    transform: rotate(-135deg);
+}
+
+/* Crying Emoji */
+.crying-emoji .eye.left,
+.crying-emoji .eye.right {
+    width: 40.85px;
+    height: 23.68px;
+    border-radius: 0;
+}
+
+.crying-emoji .eye.left {
+    left: -4px;
+    top: 53px;
+}
+
+.crying-emoji .eye.right {
+    right: -4px;
+    top: 53px;
+}
+
+.crying-mouth {
+    width: 55.57px;
+    height: 55.57px;
+    border: 9px solid black;
+    border-radius: 0;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    position: absolute;
+    top: 125px;
+    left: 30px;
+    transform: rotate(-135deg);
+}
+
+/* Angry Emoji */
+.angry-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.angry-emoji .eyebrow.left {
+    width: 84.65px;
+    height: 86.53px;
+    background-color: #F5F1E8;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    top: 5px;
+}
+
+.angry-emoji .eye.left {
+    left: 2px;
+    top: 3px;
+}
+
+.angry-emoji .eye.right {
+    right: 2px;
+    top: 3px;
+}
+
+.angry-mouth {
+    width: 108.48px;
+    height: 108.48px;
+    border: 20px solid black;
+    border-radius: 50%;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    position: absolute;
+    top: 124px;
+    left: 4px;
+    transform: rotate(-135deg);
+}
+
+/* Very Angry Emoji */
+.very-angry-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.very-angry-emoji .eye.left,
+.very-angry-emoji .eye.right {
+    width: 39px;
+    height: 39px;
+}
+
+.very-angry-emoji .eye.left {
+    left: 4px;
+    top: 42px;
+}
+
+.very-angry-emoji .eye.right {
+    right: 4px;
+    top: 42px;
+}
+
+.very-angry-mouth {
+    width: 89.14px;
+    height: 34.97px;
+    border: 10.29px solid black;
+    border-radius: 17.49px;
+    position: absolute;
+    bottom: 20px;
+    left: 13px;
+}
+
+/* Nervous Emoji */
+.nervous-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+    transform: rotate(90deg);
+}
+
+.nervous-emoji .eye.left {
+    width: 43.64px;
+    height: 43.64px;
+}
+
+.nervous-mouth {
+    width: 111.78px;
+    height: 0px;
+    border: 15.31px solid black;
+    position: absolute;
+    bottom: 10px;
+    left: 2px;
+}
+
+/* Worried Emoji (Same as nervous but different positioning) */
+.worried-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.worried-emoji .eye.left {
+    width: 38.47px;
+    height: 38.47px;
+    left: 14px;
+    top: 54px;
+}
+
+.worried-emoji .wink-cover.right-side {
+    width: 83.85px;
+    height: 85.11px;
+    background-color: #F5F1E8;
+    border-radius: 50%;
+    position: absolute;
+    right: -32px;
+    top: 12px;
+}
+
+/* Neutral Emoji */
+.neutral-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.neutral-emoji .eye.left,
+.neutral-emoji .eye.right {
+    width: 43.64px;
+    height: 43.64px;
+}
+
+.neutral-emoji .eye.left {
+    left: 0;
+    top: 53px;
+}
+
+.neutral-emoji .eye.right {
+    right: 0;
+    top: 53px;
+}
+
+.neutral-mouth {
+    width: 111.78px;
+    height: 0px;
+    border: 15.31px solid black;
+    position: absolute;
+    bottom: 15px;
+    left: 2px;
+}
+
+/* Smirk Emoji */
+.smirk-emoji {
+    border: 20px solid black;
+    border-radius: 50%;
+}
+
+.smirk-emoji .eye.left,
+.smirk-emoji .eye.right {
+    width: 38.47px;
+    height: 38.47px;
+}
+
+.smirk-emoji .eye.left {
+    left: 14px;
+    top: 54px;
+}
+
+.smirk-emoji .eye.right {
+    right: 14px;
+    top: 54px;
+}
+
+.smirk-mouth {
+    width: 98.54px;
+    height: 0px;
+    border: 13.50px solid black;
+    position: absolute;
+    bottom: 18px;
+    left: 24px;
+    transform: rotate(-15deg);
+}
+
+/* Card Content */
+.card-content {
+    background-color: white;
+    border-radius: 0 0 29.12px 29.12px;
+    padding: 20px 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 228px;
+}
+
+.tags {
+    display: flex;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.tag {
+    background-color: #C5504B;
+    color: #F5F1E8;
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 22.31px;
+    font-weight: 400;
+    line-height: 29px;
+    padding: 10px 20px;
+    border-radius: 26.96px;
+    text-align: center;
+}
+
+.tag:first-child {
+    width: 111px;
+}
+
+.tag:last-child {
+    width: 83px;
+}
+
+.description {
+    color: #C5504B;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    margin: 0;
+    width: 327px;
+}
+
+/* Add Button */
+.add-button {
+    width: 58px;
+    height: 58px;
+    background-color: #C5504B;
+    color: #F5F1E8;
+    border: none;
+    border-radius: 50%;
+    font-size: 42px;
+    font-weight: 300;
+    cursor: pointer;
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(197, 80, 75, 0.3);
+}
+
+.add-button:hover {
+    background-color: #A84440;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.add-button:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #8B3A37;
+    color: #F5F1E8;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Bagel Fat One', cursive;
+    border: 3px solid #F5F1E8;
+    z-index: 20;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 406px);
+        padding: 100px 100px 100px 100px;
+    }
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: 406px;
+        padding: 100px 50px 100px 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        padding: 80px 20px 100px 20px;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 406px;
+        margin: 0 auto;
+    }
+}
