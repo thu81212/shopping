@@ -5,6 +5,7 @@
     background-color: #F5F1E8;
     position: relative;
     margin: 0 auto;
+    overflow-x: hidden;
 }
 
 /* Products Grid */
