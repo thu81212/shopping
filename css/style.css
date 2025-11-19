@@ -39,14 +39,14 @@ body {
     height: 97px;
     background-color: #c5504b;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
 }
 
 /* Main Title */
 .main-title {
-    position: absolute;
-    left: calc(50% + 60px);
-    top: 49px;
-    transform: translate(-50%, -50%);
     font-family: 'Bagel Fat One', cursive;
     font-size: 40px;
     font-style: normal;
@@ -55,13 +55,13 @@ body {
     color: #f5f1e8;
     white-space: nowrap;
     z-index: 10;
+    flex: 1;
+    text-align: center;
+    padding-left: 38px;
 }
 
 /* Shopping Cart Button */
 .cart-button {
-    position: absolute;
-    right: 30px;
-    top: 25px;
     width: 68px;
     height: 47.802px;
     background-color: #f5f1e8;
@@ -72,6 +72,7 @@ body {
     cursor: pointer;
     transition: transform 0.2s ease;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 .cart-button:hover {
