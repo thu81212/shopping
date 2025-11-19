@@ -44,7 +44,7 @@ body {
 /* Main Title */
 .main-title {
     position: absolute;
-    left: 100px;
+    left: calc(50% - 764px);
     top: 49px;
     transform: translateY(-50%);
     font-family: 'Bagel Fat One', cursive;
@@ -60,7 +60,7 @@ body {
 /* Shopping Cart Button */
 .cart-button {
     position: absolute;
-    left: 1370px;
+    left: calc(50% + 506px);
     top: 25px;
     width: 68px;
     height: 47.802px;
@@ -90,14 +90,14 @@ body {
 }
 
 .ellipse-98 {
-    left: 288px;
+    left: calc(50% - 576px);
     top: 527.58px;
     width: 446.223px;
     height: 211.571px;
 }
 
 .ellipse-99 {
-    left: 457px;
+    left: calc(50% - 407px);
     top: 335.25px;
     width: 308.005px;
     height: 153.903px;
@@ -105,7 +105,7 @@ body {
 }
 
 .ellipse-100 {
-    left: 1034px;
+    left: calc(50% + 170px);
     top: 540.98px;
     width: 379.647px;
     height: 124.147px;
@@ -113,7 +113,7 @@ body {
 }
 
 .ellipse-101 {
-    left: 1131px;
+    left: calc(50% + 267px);
     top: 498.68px;
     width: 221.547px;
     height: 72.447px;
@@ -121,7 +121,7 @@ body {
 }
 
 .ellipse-102 {
-    left: 1000px;
+    left: calc(50% + 136px);
     top: 303.7px;
     width: 166.714px;
     height: 176.004px;
@@ -129,7 +129,7 @@ body {
 }
 
 .ellipse-103 {
-    left: 1400px;
+    left: calc(50% + 536px);
     top: 553.74px;
     width: 71.55px;
     height: 75.396px;
@@ -137,7 +137,7 @@ body {
 }
 
 .ellipse-104 {
-    left: 402px;
+    left: calc(50% - 462px);
     top: 246px;
     width: 101.596px;
     height: 107.258px;
@@ -145,7 +145,7 @@ body {
 }
 
 .ellipse-105 {
-    left: 212px;
+    left: calc(50% - 652px);
     top: 428.18px;
     width: 102.651px;
     height: 108.291px;
@@ -155,10 +155,11 @@ body {
 /* Meditating Woman - Main Image */
 .meditating-woman {
     position: absolute;
-    left: 625px;
+    left: 50%;
     top: 418.33px;
     width: 492.384px;
     height: 360.825px;
+    transform: translateX(-50%);
     z-index: 10;
     object-fit: contain;
 }
@@ -166,7 +167,7 @@ body {
 /* "How are you feeling today?" Text */
 .feeling-text {
     position: absolute;
-    left: 880px;
+    left: 50%;
     top: 236px;
     transform: translateX(-50%);
     font-family: 'Fuzzy Bubbles', cursive;
@@ -185,10 +186,11 @@ body {
 /* Detect My Emotion Button */
 .detect-button {
     position: absolute;
-    left: 703px;
+    left: 50%;
     top: 868px;
     width: 364px;
     height: 103px;
+    transform: translateX(-50%);
     background-color: #c5504b;
     border: 10px solid #ffe4d9;
     border-radius: 69px;
@@ -203,11 +205,11 @@ body {
 
 .detect-button:hover {
     background-color: #b34641;
-    transform: scale(1.05);
+    transform: translateX(-50%) scale(1.05);
 }
 
 .detect-button:active {
-    transform: scale(0.98);
+    transform: translateX(-50%) scale(0.98);
 }
 
 .detect-button span {
@@ -226,10 +228,11 @@ body {
 /* Double Down Arrow */
 .double-down {
     position: absolute;
-    left: 856px;
+    left: 50%;
     top: 1060px;
     width: 57px;
     height: 57px;
+    transform: translateX(-50%);
     cursor: pointer;
     z-index: 20;
     animation: bounce 2s infinite;
@@ -237,10 +240,10 @@ body {
 
 @keyframes bounce {
     0%, 100% {
-        transform: translateY(0);
+        transform: translateX(-50%) translateY(0);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateX(-50%) translateY(-10px);
     }
 }
 

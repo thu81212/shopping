@@ -18,13 +18,6 @@
     justify-content: center;
 }
 
-@media (min-width: 1729px) {
-    .products-grid {
-        padding: 100px 193.808px 100px 208.192px;
-        justify-content: flex-start;
-    }
-}
-
 /* Product Card */
 .product-card {
     width: 406px;
