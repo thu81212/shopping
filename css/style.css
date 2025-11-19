@@ -44,7 +44,7 @@ body {
 /* Main Title */
 .main-title {
     position: absolute;
-    left: calc(50% + 120px);
+    left: calc(50% + 60px);
     top: 49px;
     transform: translate(-50%, -50%);
     font-family: 'Bagel Fat One', cursive;
