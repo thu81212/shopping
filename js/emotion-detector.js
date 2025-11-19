@@ -13,6 +13,8 @@ class EmotionDetector {
         this.modelsLoaded = false;
         this.onEmotionDetected = null; // Callback for emotion detection
         this.emojiOverlay = null; // Emoji overlay element
+        this.currentEmojiClass = null; // Current detected emoji class
+        this.currentEmotion = null; // Current detected emotion
     }
 
     async loadModels() {
@@ -215,10 +217,17 @@ class EmotionDetector {
         this.emojiOverlay = document.createElement('div');
         this.emojiOverlay.className = 'camera-emoji-overlay';
         this.emojiOverlay.innerHTML = `
-            <div class="emoji">
-                <div class="eye-left"></div>
-                <div class="eye-right"></div>
-                <div class="mouth"></div>
+            <div class="emoji-overlay-content">
+                <div class="emoji">
+                    <div class="eye-left"></div>
+                    <div class="eye-right"></div>
+                    <div class="mouth"></div>
+                </div>
+                <p class="emoji-overlay-label">Detected</p>
+                <button class="emoji-overlay-add-btn">
+                    <span class="add-icon">+</span>
+                    <span class="add-text">Add to Cart</span>
+                </button>
             </div>
         `;
 
@@ -226,6 +235,12 @@ class EmotionDetector {
         if (this.canvas && this.canvas.parentElement) {
             this.canvas.parentElement.appendChild(this.emojiOverlay);
         }
+
+        // Add click handler for add button
+        const addButton = this.emojiOverlay.querySelector('.emoji-overlay-add-btn');
+        addButton.addEventListener('click', () => {
+            this.addCurrentEmojiToCart();
+        });
 
         return this.emojiOverlay;
     }
@@ -239,9 +254,17 @@ class EmotionDetector {
         // Get emoji class for this emotion
         const emojiClass = this.getProductEmojiClass(emotion, confidence);
 
+        // Store current emoji info
+        this.currentEmojiClass = emojiClass;
+        this.currentEmotion = emotion;
+
         // Update emoji class
         const emojiElement = this.emojiOverlay.querySelector('.emoji');
         emojiElement.className = `emoji ${emojiClass}`;
+
+        // Update label with emotion name
+        const label = this.emojiOverlay.querySelector('.emoji-overlay-label');
+        label.textContent = emotion.charAt(0).toUpperCase() + emotion.slice(1);
 
         // Show overlay with animation (positioned via CSS, not on face)
         this.emojiOverlay.classList.add('active');
@@ -251,6 +274,47 @@ class EmotionDetector {
     hideEmojiOverlay() {
         if (this.emojiOverlay) {
             this.emojiOverlay.classList.remove('active');
+        }
+    }
+
+    // Map emoji class to product index
+    getProductIndexFromEmojiClass(emojiClass) {
+        const emojiToProductMap = {
+            'emoji-1': 0,   // Big Grin - Joyful, Excited
+            'emoji-2': 1,   // Slight Smile - Content, Peaceful
+            'emoji-3': 2,   // Wink - Playful, Cheeky
+            'emoji-4': 3,   // Surprised - Surprised, Amazed
+            'emoji-5': 4,   // Worried - Worried, Anxious
+            'emoji-6': 5,   // Sad - Sad, Empathetic
+            'emoji-7': 6,   // Closed Eyes Smile - Blissful, Peaceful
+            'emoji-8': 7,   // Sleepy - Tired, Sleepy
+            'emoji-9': 8,   // Slight Frown - Disappointed, Meh
+            'emoji-10': 9,  // Star Eyes - Starstruck, Excited
+            'emoji-11': 10, // Skeptical - Skeptical, Doubtful
+            'emoji-12': 11  // Neutral - Neutral, Indifferent
+        };
+        return emojiToProductMap[emojiClass] ?? 0;
+    }
+
+    // Add current detected emoji to cart
+    addCurrentEmojiToCart() {
+        if (!this.currentEmojiClass) return;
+
+        const productIndex = this.getProductIndexFromEmojiClass(this.currentEmojiClass);
+
+        // Trigger add to cart event
+        const event = new CustomEvent('addEmojiToCart', {
+            detail: { productIndex, emojiClass: this.currentEmojiClass, emotion: this.currentEmotion }
+        });
+        window.dispatchEvent(event);
+
+        // Visual feedback - pulse the button
+        const addButton = this.emojiOverlay?.querySelector('.emoji-overlay-add-btn');
+        if (addButton) {
+            addButton.classList.add('added');
+            setTimeout(() => {
+                addButton.classList.remove('added');
+            }, 500);
         }
     }
 }

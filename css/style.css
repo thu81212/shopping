@@ -331,9 +331,8 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 150px;
-    height: 150px;
-    pointer-events: none;
+    width: 180px;
+    pointer-events: auto;
     z-index: 10;
     opacity: 0;
     transform: scale(0.5) translateX(50px);
@@ -342,9 +341,6 @@ body {
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 4px 20px rgba(197, 80, 75, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .camera-emoji-overlay.active {
@@ -352,9 +348,16 @@ body {
     transform: scale(1) translateX(0);
 }
 
+.emoji-overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 .camera-emoji-overlay .emoji {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     position: relative;
     animation: emojiPulse 2s ease-in-out infinite;
 }
@@ -366,6 +369,75 @@ body {
     50% {
         transform: scale(1.08);
     }
+}
+
+.emoji-overlay-label {
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 16px;
+    color: #C5504B;
+    margin: 0;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.emoji-overlay-add-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #C5504B;
+    color: #F5F1E8;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(197, 80, 75, 0.3);
+}
+
+.emoji-overlay-add-btn:hover {
+    background-color: #A84440;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 80, 75, 0.4);
+}
+
+.emoji-overlay-add-btn:active {
+    transform: translateY(0);
+}
+
+.emoji-overlay-add-btn.added {
+    background-color: #4CAF50;
+    animation: buttonSuccess 0.5s ease;
+}
+
+@keyframes buttonSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.emoji-overlay-add-btn .add-icon {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.emoji-overlay-add-btn .add-text {
+    font-size: 13px;
+}
+
+/* Cart button pulse animation */
+.cart-button.pulse {
+    animation: cartPulse 0.6s ease;
+}
+
+@keyframes cartPulse {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.15); }
+    50% { transform: scale(1.05); }
+    75% { transform: scale(1.1); }
 }
 
 .emotion-result {

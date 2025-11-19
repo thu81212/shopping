@@ -11,6 +11,24 @@ function initializeProductsPage() {
     updateCartButtonWithBadge();
     initializeScrollDown();
     initializeProductCardHovers();
+    initializeEmojiCartListener();
+}
+
+// Listen for emoji add to cart events from camera
+function initializeEmojiCartListener() {
+    window.addEventListener('addEmojiToCart', (event) => {
+        const { productIndex } = event.detail;
+        addToCart(productIndex);
+
+        // Pulse the cart button to draw attention
+        const cartButton = document.querySelector('.cart-button');
+        if (cartButton) {
+            cartButton.classList.add('pulse');
+            setTimeout(() => {
+                cartButton.classList.remove('pulse');
+            }, 600);
+        }
+    });
 }
 
 // Add button functionality
