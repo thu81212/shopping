@@ -1,0 +1,16 @@
+{
+  "name": "emotion-tracking-shopping",
+  "version": "1.0.0",
+  "description": "Shopping website with facial emotion tracking and daily mood expression",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080"
+  },
+  "keywords": ["shopping", "emotion-tracking", "facial-recognition", "mood-tracker"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
