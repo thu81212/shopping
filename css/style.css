@@ -10,6 +10,10 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f5f1e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 /* Main Container - Exact Figma Size */
@@ -18,7 +22,6 @@ body {
     width: 1728px;
     height: 1117px;
     background-color: #f5f1e8;
-    margin: 0 auto;
     overflow: hidden;
 }
 
@@ -367,9 +370,6 @@ body {
 @media screen and (max-width: 1728px) {
     body {
         overflow-x: auto;
-    }
-
-    .front-page {
-        margin: 0;
+        align-items: flex-start;
     }
 }
