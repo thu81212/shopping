@@ -44,7 +44,7 @@ body {
 /* Main Title */
 .main-title {
     position: absolute;
-    left: 50%;
+    left: calc(50% + 50px);
     top: 49px;
     transform: translate(-50%, -50%);
     font-family: 'Bagel Fat One', cursive;
@@ -60,7 +60,7 @@ body {
 /* Shopping Cart Button */
 .cart-button {
     position: absolute;
-    right: 100px;
+    right: 50px;
     top: 25px;
     width: 68px;
     height: 47.802px;
