@@ -302,6 +302,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scaleX(-1);
 }
 
 #overlay {
@@ -310,6 +311,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    transform: scaleX(-1);
 }
 
 .emotion-result {
