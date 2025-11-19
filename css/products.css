@@ -440,8 +440,8 @@
     font-weight: 300;
     cursor: pointer;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
