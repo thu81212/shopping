@@ -12,6 +12,7 @@ class EmotionDetector {
         this.detectionInterval = null;
         this.modelsLoaded = false;
         this.onEmotionDetected = null; // Callback for emotion detection
+        this.emojiOverlay = null; // Emoji overlay element
     }
 
     async loadModels() {
@@ -79,6 +80,7 @@ class EmotionDetector {
                 // Get the first detected face
                 const detection = detections[0];
                 const expressions = detection.expressions;
+                const faceBox = detection.detection.box;
 
                 // Find the dominant emotion
                 let maxEmotion = 'neutral';
@@ -94,17 +96,22 @@ class EmotionDetector {
                 // Draw detections on canvas
                 this.drawDetections(detections);
 
+                // Update emoji overlay
+                this.updateEmojiOverlay(maxEmotion, maxValue, faceBox);
+
                 return {
                     emotion: maxEmotion,
                     confidence: maxValue,
                     allExpressions: expressions,
+                    faceBox: faceBox,
                     timestamp: new Date().toISOString()
                 };
             }
 
-            // Clear canvas if no face detected
+            // Clear canvas and hide overlay if no face detected
             const ctx = this.canvas.getContext('2d');
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.hideEmojiOverlay();
 
             return null;
         } catch (error) {
@@ -161,6 +168,12 @@ class EmotionDetector {
             const ctx = this.canvas.getContext('2d');
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         }
+
+        // Remove emoji overlay
+        if (this.emojiOverlay) {
+            this.emojiOverlay.remove();
+            this.emojiOverlay = null;
+        }
     }
 
     getEmotionEmoji(emotion) {
@@ -174,5 +187,85 @@ class EmotionDetector {
             'neutral': '😐'
         };
         return emojiMap[emotion] || '😐';
+    }
+
+    // Map detected emotions to product emoji classes
+    getProductEmojiClass(emotion, confidence) {
+        // Based on detected emotion and confidence, return corresponding emoji class
+        const emotionMap = {
+            'happy': confidence > 0.7 ? 'emoji-1' : 'emoji-2', // Big grin vs slight smile
+            'sad': 'emoji-6', // Sad face
+            'angry': 'emoji-11', // Skeptical/annoyed
+            'surprised': 'emoji-4', // Surprised open mouth
+            'fearful': 'emoji-5', // Worried face
+            'disgusted': 'emoji-9', // Slight frown
+            'neutral': 'emoji-12' // Neutral face
+        };
+        return emotionMap[emotion] || 'emoji-12';
+    }
+
+    // Create emoji overlay on canvas
+    createEmojiOverlay() {
+        // Remove existing overlay
+        if (this.emojiOverlay) {
+            this.emojiOverlay.remove();
+        }
+
+        // Create overlay container
+        this.emojiOverlay = document.createElement('div');
+        this.emojiOverlay.className = 'camera-emoji-overlay';
+        this.emojiOverlay.innerHTML = `
+            <div class="emoji">
+                <div class="eye-left"></div>
+                <div class="eye-right"></div>
+                <div class="mouth"></div>
+            </div>
+        `;
+
+        // Insert after canvas
+        if (this.canvas && this.canvas.parentElement) {
+            this.canvas.parentElement.appendChild(this.emojiOverlay);
+        }
+
+        return this.emojiOverlay;
+    }
+
+    // Update emoji overlay with detected emotion
+    updateEmojiOverlay(emotion, confidence, faceBox) {
+        if (!this.emojiOverlay) {
+            this.createEmojiOverlay();
+        }
+
+        // Get emoji class for this emotion
+        const emojiClass = this.getProductEmojiClass(emotion, confidence);
+
+        // Update emoji class
+        const emojiElement = this.emojiOverlay.querySelector('.emoji');
+        emojiElement.className = `emoji ${emojiClass}`;
+
+        // Position overlay on detected face
+        if (faceBox) {
+            const scaleX = this.canvas.width / this.displaySize.width;
+            const scaleY = this.canvas.height / this.displaySize.height;
+
+            const left = faceBox.x * scaleX;
+            const top = faceBox.y * scaleY;
+            const width = faceBox.width * scaleX;
+
+            this.emojiOverlay.style.left = `${left}px`;
+            this.emojiOverlay.style.top = `${top}px`;
+            this.emojiOverlay.style.width = `${width}px`;
+            this.emojiOverlay.style.height = `${width}px`;
+        }
+
+        // Show overlay with animation
+        this.emojiOverlay.classList.add('active');
+    }
+
+    // Hide emoji overlay
+    hideEmojiOverlay() {
+        if (this.emojiOverlay) {
+            this.emojiOverlay.classList.remove('active');
+        }
     }
 }
