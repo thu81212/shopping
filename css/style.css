@@ -35,32 +35,19 @@ body {
     display: none;
 }
 
-/* Shopping Cart Button - Positioned as overlay */
+/* Shopping Cart Button - Invisible clickable overlay positioned over Figma cart icon */
 .cart-button {
     position: absolute;
     top: 25px;
     right: 30px;
     width: 68px;
     height: 47.802px;
-    background-color: #f5f1e8;
-    border-radius: 23.901px;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease;
     z-index: 100;
-    flex-shrink: 0;
-}
-
-.cart-button:hover {
-    transform: scale(1.05);
-}
-
-.cart-button svg,
-.cart-button .cart-icon {
-    width: 30.97px;
-    height: 30.97px;
 }
 
 .cart-badge {
