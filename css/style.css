@@ -79,7 +79,8 @@ body {
     transform: scale(1.05);
 }
 
-.cart-button img {
+.cart-button svg,
+.cart-button .cart-icon {
     width: 30.97px;
     height: 30.97px;
 }
@@ -88,6 +89,9 @@ body {
 .ellipse {
     position: absolute;
     z-index: 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(197, 80, 75, 0.15), rgba(197, 80, 75, 0.05));
+    opacity: 0.6;
 }
 
 .ellipse-98 {
@@ -162,7 +166,14 @@ body {
     height: 360.825px;
     transform: translateX(-50%);
     z-index: 10;
-    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meditating-woman svg {
+    width: 100%;
+    height: 100%;
 }
 
 /* "How are you feeling today?" Text */

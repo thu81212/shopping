@@ -23,23 +23,45 @@
 
             <!-- Shopping Cart Button -->
             <div class="cart-button">
-                <img src="https://www.figma.com/api/mcp/asset/9bc90771-4cd2-441c-81ba-9f7fdc2a726d" alt="Shopping Cart">
+                <svg class="cart-icon" width="31" height="31" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 2L7.17 4M16.5 2L18.33 4M3.5 9.09H20.5M19.5 9.09L18.8 18.99C18.73 20.09 17.82 21 16.72 21H7.28C6.18 21 5.27 20.09 5.2 18.99L4.5 9.09M9.5 13V18M14.5 13V18" stroke="#C5504B" stroke-width="2" stroke-linecap="round"/>
+                </svg>
                 <span class="cart-badge" style="display: none;">0</span>
             </div>
         </div>
 
         <!-- Background Decorative Ellipses -->
-        <img src="https://www.figma.com/api/mcp/asset/99711103-0066-49a6-a12b-a02f9516f2ed" alt="" class="ellipse ellipse-98">
-        <img src="https://www.figma.com/api/mcp/asset/31a31be9-262f-4319-b267-e059fb5317f6" alt="" class="ellipse ellipse-99">
-        <img src="https://www.figma.com/api/mcp/asset/415b0ed3-f8eb-487d-858c-bec411009723" alt="" class="ellipse ellipse-100">
-        <img src="https://www.figma.com/api/mcp/asset/0d71c272-f3f7-41c9-bf85-7d102e8ce568" alt="" class="ellipse ellipse-101">
-        <img src="https://www.figma.com/api/mcp/asset/f910007d-363d-4d4d-bb14-e5c5a0f2193c" alt="" class="ellipse ellipse-102">
-        <img src="https://www.figma.com/api/mcp/asset/9b9b617d-328d-493f-afaa-dfea873dcc44" alt="" class="ellipse ellipse-103">
-        <img src="https://www.figma.com/api/mcp/asset/eea7f06b-707b-4535-9f6d-3cbe8d5becda" alt="" class="ellipse ellipse-104">
-        <img src="https://www.figma.com/api/mcp/asset/ec91419a-c674-463a-bca0-e1a797b5c077" alt="" class="ellipse ellipse-105">
+        <div class="ellipse ellipse-98"></div>
+        <div class="ellipse ellipse-99"></div>
+        <div class="ellipse ellipse-100"></div>
+        <div class="ellipse ellipse-101"></div>
+        <div class="ellipse ellipse-102"></div>
+        <div class="ellipse ellipse-103"></div>
+        <div class="ellipse ellipse-104"></div>
+        <div class="ellipse ellipse-105"></div>
 
         <!-- Meditating Woman - Main Image -->
-        <img src="https://www.figma.com/api/mcp/asset/79944f54-099a-4d91-bdcc-c76464591d24" alt="Meditating Woman" class="meditating-woman">
+        <div class="meditating-woman">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Person sitting in meditation -->
+                <ellipse cx="100" cy="150" rx="60" ry="15" fill="#C5504B" opacity="0.2"/>
+                <!-- Body -->
+                <path d="M100 80 Q85 100 85 120 L85 140 Q85 145 90 145 L110 145 Q115 145 115 140 L115 120 Q115 100 100 80" fill="#C5504B"/>
+                <!-- Head -->
+                <circle cx="100" cy="70" r="20" fill="#A84440"/>
+                <!-- Legs crossed -->
+                <path d="M85 145 Q75 155 70 160 L130 160 Q125 155 115 145" fill="#C5504B"/>
+                <!-- Arms in meditation pose -->
+                <ellipse cx="75" cy="115" rx="8" ry="25" fill="#C5504B" transform="rotate(-30 75 115)"/>
+                <ellipse cx="125" cy="115" rx="8" ry="25" fill="#C5504B" transform="rotate(30 125 115)"/>
+                <!-- Hands -->
+                <circle cx="70" cy="130" r="6" fill="#A84440"/>
+                <circle cx="130" cy="130" r="6" fill="#A84440"/>
+                <!-- Peace symbols above head -->
+                <text x="90" y="40" font-size="20" fill="#C5504B">✨</text>
+                <text x="110" y="35" font-size="20" fill="#C5504B">✨</text>
+            </svg>
+        </div>
 
         <!-- "How are you feeling today?" Text -->
         <div class="feeling-text">
@@ -49,12 +71,18 @@
 
         <!-- Detect My Emotion Button -->
         <button class="detect-button">
-            <img src="https://www.figma.com/api/mcp/asset/12bf884c-c181-4e95-807a-8e8b6d38bafa" alt="Camera" class="camera-icon">
+            <svg class="camera-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 19C23 20.1 22.1 21 21 21H3C1.9 21 1 20.1 1 19V8C1 6.9 1.9 6 3 6H7L9 3H15L17 6H21C22.1 6 23 6.9 23 8V19Z" stroke="#F5F1E8" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="13" r="4" stroke="#F5F1E8" stroke-width="2" fill="none"/>
+            </svg>
             <span>Detect My Emotion</span>
         </button>
 
         <!-- Double Down Arrow -->
-        <img src="https://www.figma.com/api/mcp/asset/ef35a991-a7db-40eb-bdce-ed05d41caf34" alt="Scroll Down" class="double-down">
+        <svg class="double-down" width="57" height="57" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 10L12 15L17 10" stroke="#C5504B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 5L12 10L17 5" stroke="#C5504B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </div>
 
     <!-- Camera Modal for Emotion Detection -->
