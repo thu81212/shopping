@@ -35,7 +35,7 @@ body {
     display: none;
 }
 
-/* Shopping Cart Button - Invisible clickable overlay positioned over Figma cart icon */
+/* Shopping Cart Button - Interactive overlay positioned over Figma cart icon */
 .cart-button {
     position: absolute;
     top: 25px;
@@ -48,6 +48,17 @@ body {
     justify-content: center;
     cursor: pointer;
     z-index: 100;
+    transition: all 0.3s ease;
+    border-radius: 23.901px;
+}
+
+.cart-button:hover {
+    transform: scale(1.1);
+    background-color: rgba(245, 241, 232, 0.2);
+}
+
+.cart-button:active {
+    transform: scale(0.95);
 }
 
 .cart-badge {
